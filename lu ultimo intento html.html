@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantidad de Yogurt a Consumir</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #00cc99, #3399ff);
+            color: black;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        section {
+            max-width: 800px;
+            margin: 2em auto;
+            padding: 1em;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            will-change: transform;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        #yogurt-image {
+            width: 100%;
+            max-height: 200px; /* Ajusta según sea necesario */
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Cantidad de Yogurt a Consumir</h1>
+    </header>
+
+    <section>
+        <h2>Calculadora de IMC</h2>
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" placeholder="Ingrese su peso"><br>
+
+        <label for="altura">Altura (m):</label>
+        <input type="number" id="altura" placeholder="Ingrese su altura"><br>
+
+        <button onclick="calcularIMC()">Calcular IMC</button><br>
+
+        <p id="resultadoIMC"></p>
+
+        <h2>Cantidad de Yogur Sugerida</h2>
+        <p id="cantidadYogur"></p>
+
+        <!-- Imagen de Yogur -->
+        <img id="yogurt-image" src="https://i.postimg.cc/7hvZYPJj/a6184feea34fd72a962f33e199d83ece.jpg" alt="Yogur Ilustración">
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Calculadora de IMC y Yogur</p>
+    </footer>
+
+    <script>
+        function calcularIMC() {
+            const peso = document.getElementById('peso').value;
+            const altura = document.getElementById('altura').value;
+
+            if (peso && altura) {
+                const imc = peso / (altura * altura);
+                document.getElementById('resultadoIMC').innerHTML = `Tu IMC es: ${imc.toFixed(2)}`;
+
+                // Sugerir cantidad de yogur según el IMC
+                let cantidadYogur = '';
+                if (imc < 18.5) {
+                    cantidadYogur = 'Se sugiere consumir 150 ml de yogur 3 veces al día.';
+                } else if (imc >= 18.5 && imc < 24.9) {
+                    cantidadYogur = 'Se sugiere consumir 150 ml de yogur 4 veces al día.';
+                } else if (imc >= 25 && imc < 29.9) {
+                    cantidadYogur = 'Se sugiere consumir 250 ml de yogur 3 veces al día.';
+                } else {
+                    cantidadYogur = 'Se sugiere consumir 350 ml de yogur 2 veces al día.';
+                }
+
+                document.getElementById('cantidadYogur').innerHTML = cantidadYogur;
+            } else {
+                alert('Por favor, ingrese peso y altura.');
+            }
+        }
+    </script>
+
+</body>
+</html>
